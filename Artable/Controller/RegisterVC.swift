@@ -27,7 +27,7 @@ class RegisterVC: UIViewController {
         
         passwordTxt.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         confirmPassTxt.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
-
+        
         
     }
     
@@ -62,32 +62,56 @@ class RegisterVC: UIViewController {
         
         guard let email = emailTxt.text , email.isNotEmpty,
             let username = usernameTxt.text, username.isNotEmpty,
-            let password = passwordTxt.text, password.isNotEmpty else { return }
+            let password = passwordTxt.text, password.isNotEmpty else {
+                AlertService.fillOutAllFieldsAlert(on: self)
+                return }
+        
+        guard let confirmPass = confirmPassTxt.text, confirmPass == password else { AlertService.passConfirm(on: self)
+            return
+            
+        }
         
         spinner.startAnimating()
         
-        Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
-            
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 debugPrint(error)
+                AlertService.showFirebaseError(on: self, error: error)
+                return
             }
-            self.spinner.stopAnimating()
-            print("Successfully register new user!!")
-            
-            
+            guard let fireUser = result?.user else { return }
+            let artUser = User.init(id: fireUser.uid, email: email, username: username, stripeId: "")
+            self.createFirestoreUser(user: artUser)
             
         }
+        
+//        guard let authUser = Auth.auth().currentUser else { return }
+//        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+//        authUser.linkAndRetrieveData(with: credential) { (authUser, error) in
+//
+//
+//            self.spinner.stopAnimating()
+//            print("Successfully register new user!!")
+//            self.dismiss(animated: true, completion: nil)
+//        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func createFirestoreUser(user: User) {
+        let newUserRef = Firestore.firestore().collection("users").document(user.id)
+        let data = User.modelToData(user: user)
+        newUserRef.setData(data) { (error) in
+            if let error = error {
+                AlertService.showFirebaseError(on: self, error: error)
+                debugPrint("Error Unalble to upload new user document\(error.localizedDescription)")
+                
+            } else {
+                self.dismiss(animated: true, completion:    nil)
+                self.spinner.stopAnimating()
+            }
+        }
     }
-    */
-
 }
+
+
+
+

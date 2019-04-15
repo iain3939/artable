@@ -11,6 +11,8 @@ project 'Artable.xcodeproj'
  pod 'Firebase/Storage'
  pod 'IQKeyboardManagerSwift'
  
+ 
+ 
  pod 'Kingfisher'
  pod 'CodableFirebase'
  
@@ -33,6 +35,6 @@ target 'ArtableAdmin' do
 
   # Pods for ArtableAdmin
   shared_pods
-  pod 'CropViewController'
+  
 
 end

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M6S-fC-QUP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M6S-fC-QUP">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--LoginVC-->
         <scene sceneID="dNK-DY-Blf">
             <objects>
-                <viewController id="Oj7-hI-W7a" sceneMemberID="viewController">
+                <viewController id="Oj7-hI-W7a" customClass="LoginVC" customModule="Artable" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cKz-mn-Uuy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,6 +54,9 @@
                                         <state key="normal" title="Forgot password">
                                             <color key="titleColor" red="0.83529411764705885" green="0.39215686274509803" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="forgotPassWasPressed:" destination="Oj7-hI-W7a" eventType="touchUpInside" id="fKp-2i-C27"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daO-BE-c4p" customClass="RoundedButton" customModule="Artable" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="181.33333333333331" width="335" height="40"/>
@@ -65,6 +68,9 @@
                                         <state key="normal" title="Log in">
                                             <color key="titleColor" red="0.94901960784313721" green="0.95294117647058818" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="loginWasPressed:" destination="Oj7-hI-W7a" eventType="touchUpInside" id="4gb-Xb-TGi"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fWh-y3-RPh" customClass="RoundedButton" customModule="Artable" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="233.33333333333331" width="335" height="40"/>
@@ -90,6 +96,9 @@
                                         <state key="normal" title="Continue as guess">
                                             <color key="titleColor" red="0.94901960780000005" green="0.95294117649999999" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="guessedWasPressed:" destination="Oj7-hI-W7a" eventType="touchUpInside" id="RAP-8M-6PR"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -113,6 +122,11 @@
                         <viewLayoutGuide key="safeArea" id="wh7-3Y-qki"/>
                     </view>
                     <navigationItem key="navigationItem" id="5Tp-Y5-0DI"/>
+                    <connections>
+                        <outlet property="emailTxt" destination="nEE-A4-PzM" id="nPq-cR-ele"/>
+                        <outlet property="passwordTxt" destination="h99-Cl-XUh" id="r0P-dN-eEO"/>
+                        <outlet property="spinner" destination="vsb-0a-mOL" id="Rbg-4g-cCC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4EC-fl-NAn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -239,7 +253,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LU2-IE-gpy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1823" y="205"/>
+            <point key="canvasLocation" x="1953" y="205"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oJS-DI-BRH">
@@ -257,7 +271,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="22U-5f-33Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="205.54722638680661"/>
+            <point key="canvasLocation" x="-265" y="205"/>
         </scene>
     </scenes>
     <resources>

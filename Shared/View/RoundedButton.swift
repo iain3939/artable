@@ -19,7 +19,7 @@ class RoundedButton: UIButton {
 
 }
 
-class roundedShadowView: UIView {
+class RoundedShadowView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
